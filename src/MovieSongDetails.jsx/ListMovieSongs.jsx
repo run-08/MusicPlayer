@@ -12,7 +12,7 @@ export const ListMovieSongs = () => {
     songThumbnail,
   } = songDetails((state) => state);
   const navigate = useNavigate();
-  const Youtube_Restapi_key = "AIzaSyDhSIkf2sVt5-2X8zzk-WqzNe5fH01_ciE";
+  const Youtube_Restapi_key = "AIzaSyBwXH0sbemwPRlykrO9MJ5j60sJYxZgkzc";
   const location = useLocation();
   console.log(location);
 

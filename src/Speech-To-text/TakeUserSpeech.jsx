@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import styles from "./TakeUserSpeechInputSong.module.css";
 const TakeUserInputByVoice = () => {
   const [isRecording, setIsRecording] = useState(false);
   const minRecorder = useRef(null);
@@ -6,12 +7,14 @@ const TakeUserInputByVoice = () => {
   const [thumbnail, setThumbnail] = useState(null);
   const [songTitle, setSongTitle] = useState(null);
   const [transcript, setTranscript] = useState("");
-  const Youtube_Restapi_key = "AIzaSyDhSIkf2sVt5-2X8zzk-WqzNe5fH01_ciE";
+  const Youtube_Restapi_key = "AIzaSyBwXH0sbemwPRlykrO9MJ5j60sJYxZgkzc";
   const fetchSong = async (title) => {
     const response = await fetch(
       `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${title} tamil song&type=video&maxResults=1&key=${Youtube_Restapi_key}`
     );
     const data = await response.json();
+    console.log(data);
+
     setVideoId(data.items[0].id.videoId);
     setThumbnail(data.items[0].snippet.thumbnail);
     setSongTitle(data.items[0].snippet.title);
@@ -87,8 +90,9 @@ const TakeUserInputByVoice = () => {
               title={songTitle}
               frameBorder="0"
               allow="autoplay"
-              className=" w-full  mt-53 "
+              className={` w-20  hover:ring-4 hover:ring-purple-500/50   rounded-full mb-25 mx-5 mt-0   h-20 ${styles.rotateAudioInputSong} `}
             ></iframe>
+            mx-5 mt-0
           </div>
         )}
       </div>

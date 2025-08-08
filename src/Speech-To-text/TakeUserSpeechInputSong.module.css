@@ -1,0 +1,9 @@
+.rotateAudioInputSong {
+  animation: rotate 5s linear infinite;
+}
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+    transform: rotate(360deg);
+  }
+}
