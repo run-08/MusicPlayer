@@ -1,8 +1,9 @@
 import { useRoutes } from "react-router-dom";
+import ArtistSongs from "./ArtistBasedSong/ArtistsSongs";
 import OutletPage from "./HomePage/OutletPage";
 import { ListMovieSongs } from "./MovieSongDetails.jsx/ListMovieSongs";
-import PlaySong from "./songPage/songsPlay";
 import TakeUserInputByVoice from "./Speech-To-text/TakeUserSpeech";
+import PlaySong from "./songPage/songsPlay";
 const App = () => {
   return (
     <>
@@ -28,6 +29,10 @@ const CustomRoutes = () => {
     {
       path: "/speechToText",
       element: <TakeUserInputByVoice></TakeUserInputByVoice>,
+    },
+    {
+      path: "/fetchFameSong",
+      element: <ArtistSongs></ArtistSongs>,
     },
   ]);
   return element;

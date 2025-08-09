@@ -1,8 +1,10 @@
-import { useEffect } from "react";
+import ColorThief from "colorthief";
+import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import songDetails from "../Zustand/SearchedSongDetails";
 import MovieSongList from "./StaticMovieSongs";
 export const ListMovieSongs = () => {
+  const imgRef = new useRef(null);
   const {
     setSongThumbnail,
     setSongVideosIds,
@@ -11,11 +13,10 @@ export const ListMovieSongs = () => {
     songVideoIds,
     songThumbnail,
   } = songDetails((state) => state);
+  const [bgColor, setBgColor] = useState("black");
   const navigate = useNavigate();
-  const Youtube_Restapi_key = "AIzaSyBwXH0sbemwPRlykrO9MJ5j60sJYxZgkzc";
+  const Youtube_Restapi_key = "AIzaSyAW_f255s6Hw3e-KRqn_Ja2qSpg9rCpW6Y";
   const location = useLocation();
-  console.log(location);
-
   const MovieName = location.state.movieName;
   const thumbnail = location.state.thumbnail;
   const movieSongs = MovieSongList[MovieName];
@@ -50,16 +51,37 @@ export const ListMovieSongs = () => {
 
   useEffect(() => {
     getSong();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const img = imgRef.current;
+    if (!img) return;
+    img.crossOrigin = "anonymous";
+    img.addEventListener("load", () => {
+      const colorThief = new ColorThief();
+      const palette = colorThief.getPalette(img, 3);
+      const colors = palette
+        .map((c) => `rgb(${c[0]}, ${c[1]}, ${c[2]}, 1)`)
+        .sort(() => Math.random() - 0.5);
+
+      const angle = Math.floor(Math.random() * 360);
+      const gradient = `linear-gradient(${angle}deg, ${colors.join(",")}`;
+      console.log(gradient);
+
+      setBgColor(gradient);
+    });
   }, []);
 
   return (
-    <div className="rounded-xl absolute w-full bg-black h-full">
+    <div
+      className={`rounded-xl  absolute w-full  h-full `}
+      style={{
+        background: bgColor,
+      }}
+    >
       <div className="MovieImage w-full my-20 h-60 mx-60">
         <img
           src={thumbnail}
           alt="Movie Poster"
-          className=" h-70  rounded-md mx-1 object-contain"
+          className=" h-70  rounded-md mx-1 object-contain cursor-pointer"
+          ref={imgRef}
         />
       </div>
       <hr className="w-400 mx-40 " />
