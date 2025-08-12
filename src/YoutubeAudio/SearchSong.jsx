@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import songDetails from "../Zustand/SearchedSongDetails";
 const SearchSong = ({ userquery }) => {
-  const Youtube_Restapi_key = "AIzaSyCbT67HwQ4DbIs3y23_1MySkKwFBlKrGZo";
+  const Youtube_Restapi_key = "AIzaSyBwXH0sbemwPRlykrO9MJ5j60sJYxZgkzc";
   const userQuery = userquery;
   const [videoId, setVideoId] = useState([]);
   const [titles, setTitles] = useState([]);
@@ -23,6 +23,7 @@ const SearchSong = ({ userquery }) => {
       const tempTitles = [];
       const tempVideoIds = [];
       const tempImages = [];
+      console.log(data);
 
       data.items.forEach((item) => {
         tempTitles.push(item.snippet?.title);

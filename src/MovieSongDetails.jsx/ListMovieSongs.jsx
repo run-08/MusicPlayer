@@ -63,7 +63,6 @@ export const ListMovieSongs = () => {
 
       const angle = Math.floor(Math.random() * 360);
       const gradient = `linear-gradient(${angle}deg, ${colors.join(",")}`;
-      console.log(gradient);
 
       setBgColor(gradient);
     });
