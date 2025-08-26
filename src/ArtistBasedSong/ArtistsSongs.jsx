@@ -74,7 +74,7 @@ const ArtistSongs = () => {
               ArtistsSongs.map((items, key) => (
                 <div
                   key={key}
-                  className="song-bar  mx-10 h-14    bg-white transition transform ease-in-out  hover:128 cursor-pointer mt-10 ring-3 hover:ring-purple-300 rounded-md"
+                  className="song-bar  mx-10 h-14 *:   bg-white transition transform ease-in-out  hover:128 cursor-pointer mt-10 ring-3 hover:ring-purple-300 rounded-md"
                 ></div>
               ))}
           </div>

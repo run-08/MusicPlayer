@@ -19,13 +19,18 @@ const TakeUserInputByVoice = () => {
     setThumbnail(data.items[0].snippet.thumbnail);
     setSongTitle(data.items[0].snippet.title);
   };
+
   const startRecording = async () => {
     const AudioStream = await navigator.mediaDevices.getUserMedia({
       audio: true,
     });
+
     const audioChunks = [];
+
     minRecorder.current = new MediaRecorder(AudioStream);
+
     minRecorder.current.ondataavailable = (e) => audioChunks.push(e.data);
+
     console.log(audioChunks);
 
     minRecorder.current.onstop = async () => {
@@ -46,13 +51,16 @@ const TakeUserInputByVoice = () => {
           console.error("Error calling backend:", error);
         });
     };
+
     setIsRecording(true);
     minRecorder.current.start();
   };
+
   const stopRecording = () => {
     minRecorder.current.stop();
     setIsRecording(false);
   };
+
   return (
     <>
       <div>
@@ -63,7 +71,7 @@ const TakeUserInputByVoice = () => {
           >
             Stop
           </button>
-        )}{" "}
+        )}
         <button
           className="  my-10 rounded-xl w-10 mx-20 cursor-pointer "
           onClick={() => {
@@ -81,6 +89,7 @@ const TakeUserInputByVoice = () => {
             <path d="M480-415.33q-45.33 0-76.33-32.28t-31-78.39v-247.33q0-44.45 31.29-75.56 31.3-31.11 76-31.11 44.71 0 76.04 31.11 31.33 31.11 31.33 75.56V-526q0 46.11-31 78.39T480-415.33Zm0-232ZM446.67-120v-131.67q-105.34-12-176-90.33Q200-420.33 200-526h66.67q0 88.33 62.36 149.17Q391.38-316 479.86-316q88.47 0 150.97-60.83 62.5-60.84 62.5-149.17H760q0 105.67-70.67 184-70.66 78.33-176 90.33V-120h-66.66ZM480-482q17.67 0 29.17-12.83 11.5-12.84 11.5-31.17v-247.33q0-17-11.69-28.5-11.7-11.5-28.98-11.5t-28.98 11.5q-11.69 11.5-11.69 28.5V-526q0 18.33 11.5 31.17Q462.33-482 480-482Z" />
           </svg>
         </button>
+
         {videoId != null && (
           <div>
             <iframe

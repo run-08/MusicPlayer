@@ -185,21 +185,18 @@ const Homepage = () => {
   return (
     <div>
       <div className="container relative my-1 ">
-        <div className="artists absolute md:block sm:hidden overflow-hidden md:mx-2 p-2 md:h-120  xl:h-400   w-30 bg-black  border border-transparent border-r-black h-full">
+        <div className="artists absolute md:block sm:hidden overflow-hidden md:mx-2 p-2 md:h-200  xl:h-400   w-30 bg-black  border border-transparent border-r-black h-full">
           {ArtistsName.map((item, key) => genrateArtistView(key))}
         </div>
-        <div
-          className="homePageSongsCatalog xl:w-430 bg-[linear-gradient(to_bottom,#1e1136_30%,#bcacd5_100%)]
- absolute  xl:ml-33  z-0 mx-20 lg:ml-30 rounder-md md:w-150 lg:w-200 md:mt-10  sm:w-120  xl:mt-0 xl:mb-20 rounded-3xl h-400  md:mx-30 "
-        >
-          <div className="category_separator lg:w-120 sm:w-30  lg:mx-5 mx-10 md:w-100 grid lg:grid-cols-3 md:grid-cols-3 md:px-2  sm:grid-cols-1 my-3">
-            <div className=" All_music_podcast sm:mb-2 sticky hover:bg-slate-300/50 hover:ring-2 t-20 z-50 w-25 h-15 tracking-widest  font-medium text-center border text-white border-white rounded-3xl p-4 cursor-pointer  hover:text-white">
+        <div className="homePageSongsCatalog  bg-[linear-gradient(to_bottom,#1e1136_30%,#bcacd5_100%)] xl:w-440 xl:mx-34 rounded-md lg:w-420 lg:mx-34 md:mx-34 md:w-410 sm:w-410 w-420 mx-30">
+          <div className="category_separator lg:w-120 sm:w-30  lg:mx-5 mx-10 md:w-100 grid lg:grid-cols-3 md:grid-cols-3 md:px-2  sm:grid-cols-1 ">
+            <div className=" All_music_podcast sm:mb-2 sticky hover:bg-slate-300/50 hover:ring-2 t-20 z-50 w-25 h-15 tracking-widest mt-4 font-medium text-center border text-white border-white rounded-3xl p-4 cursor-pointer  hover:text-white">
               <span>All</span>
             </div>
-            <div className=" music w-25 sm:mb-2 h-15 tracking-widest font-medium text-center border text-white border-white rounded-3xl p-4 cursor-pointer  hover:bg-slate-300/50 hover:ring-2">
+            <div className=" music w-25 sm:mb-2 h-15 tracking-widest font-medium text-center border text-white mt-4 border-white rounded-3xl p-4 cursor-pointer  hover:bg-slate-300/50 hover:ring-2">
               <span> Music </span>
             </div>
-            <div className=" podacast  w-25 h-15 sm:mb-2 tracking-widest font-medium text-white text-center border border-white rounded-3xl p-4 cursor-pointer hover:bg-slate-300/50 hover:ring-2 hover:text-white">
+            <div className=" podacast  w-25 h-15 sm:mb-2 tracking-widest font-medium text-white text-center mt-4 border border-white rounded-3xl p-4 cursor-pointer hover:bg-slate-300/50 hover:ring-2 hover:text-white">
               <span> Podcast </span>
             </div>
           </div>

@@ -5,17 +5,25 @@ import SearchSong from "../YoutubeAudio/SearchSong";
 const NavBar = () => {
   const [isSearching, setIsSearching] = useState("hidden");
   const [query, setQuery] = useState(null);
+  const [searchColor, setSearchColor] = useState("white");
+
+  const showSearchColor = () => {
+    setSearchColor("purple");
+
+    setTimeout(() => {
+      setSearchColor("white");
+    }, 3000);
+  };
 
   return (
     <>
       <div
-        className="bg-blue-600 sticky top-0 z-50 shadow-md
-      contain-content grid sm:grid-cols-1 w-full xl:w-460 md:grid-cols-2 lg:grid-cols-3  tracking-[5px] navBar justify-around items-center "
+        className=" flex mx-auto xl:w-470 lg:w-450 md:w-440 sm:w-450 w-450  items-center justify-between"
         style={{
           backgroundColor: "#1e1136",
         }}
       >
-        <div className="flex mt-2 md:mt-0 ">
+        <div className="flex my-5 mx-5  ">
           <div
             className="text-white  text-2xl pl-10 overflow-hidden font-bold tracking-[10px] logo cursor-pointer"
             onClick={() => {
@@ -32,22 +40,23 @@ const NavBar = () => {
               setQuery(e.target.value);
             }}
             placeholder="Search your favorite Song"
-            className="lg:w-150 absolute xl-w-1200 xl:mr-100 text-white sm:w-150 w-200 xl:pr-30 xl:w-120 sm:mb-10 sm:mt-20 mt-10 mr-50 md:mr-0 ml-10 lg:ml-0 p-3 md:pt-3 md-my-0 lg:mb-2 md:mt-10 lg:mt-0 md:w-100  border  text-white-900 border-white-500 sm:p-3  rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-100   focus:font-bold"
+            className="  border p-3 mx-60 w-100 text-white border-white-500    rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-100   focus:font-bold"
           />
           <svg
             xmlns="http://www.w3.org/2000/svg"
             height="30px"
             viewBox="0 -960 960 960"
             width="30px"
-            fill="#e3e3e3"
-            className="text-center absolute sm:ml-60  xl:mr-68 xl:mb-2   md:ml-90   lg:ml-80  cursor-pointer"
+            fill={searchColor}
+            className="absolute ml-90 cursor-pointer"
             onClick={() => {
               setIsSearching("block");
             }}
+            onMouseOverCapture={() => showSearchColor()}
           >
             <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z" />
           </svg>
-          <button className="absolute ml-50 rounded-xl w-23  ">
+          <button className="ml-120 rounded-xl absolute w-23  ">
             {TakeUserInputByVoice()}
           </button>
         </div>
