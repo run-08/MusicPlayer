@@ -84,7 +84,7 @@ const TakeUserInputByVoice = () => {
             viewBox="0 -960 960 950"
             width="40px"
             fill="red"
-            className="cursor-pointer hover:ring-5 w-14 h-14 my-2  border border-transparent  rounded-full hover:ring-blue-300"
+            className="cursor-pointer hover:ring-5 w-14 h-14 my-2  border border-transparent hover:text-purple-100 transition-all ease-in-out delay-25 duration-100 rounded-full hover:ring-blue-300"
           >
             <path d="M480-415.33q-45.33 0-76.33-32.28t-31-78.39v-247.33q0-44.45 31.29-75.56 31.3-31.11 76-31.11 44.71 0 76.04 31.11 31.33 31.11 31.33 75.56V-526q0 46.11-31 78.39T480-415.33Zm0-232ZM446.67-120v-131.67q-105.34-12-176-90.33Q200-420.33 200-526h66.67q0 88.33 62.36 149.17Q391.38-316 479.86-316q88.47 0 150.97-60.83 62.5-60.84 62.5-149.17H760q0 105.67-70.67 184-70.66 78.33-176 90.33V-120h-66.66ZM480-482q17.67 0 29.17-12.83 11.5-12.84 11.5-31.17v-247.33q0-17-11.69-28.5-11.7-11.5-28.98-11.5t-28.98 11.5q-11.69 11.5-11.69 28.5V-526q0 18.33 11.5 31.17Q462.33-482 480-482Z" />
           </svg>

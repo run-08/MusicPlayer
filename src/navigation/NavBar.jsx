@@ -6,6 +6,7 @@ const NavBar = () => {
   const [isSearching, setIsSearching] = useState("hidden");
   const [query, setQuery] = useState(null);
   const [searchColor, setSearchColor] = useState("white");
+  const [shadow, setShadow] = useState("rgba(0,0,0,0)");
 
   const showSearchColor = () => {
     setSearchColor("purple");
@@ -60,6 +61,18 @@ const NavBar = () => {
             {TakeUserInputByVoice()}
           </button>
         </div>
+        <button
+          className="green cursor-pointer border p-4 px-10 ring-1 hover:border-pink-400 rounded-md text-white border-purple-300 hover:scale-103 transition-all  duration-[600ms] ease-in-out"
+          style={{
+            boxShadow: `0px 0px 10px ${shadow}`,
+          }}
+          onMouseOut={() => {
+            setShadow("rgba(0,0,0,0)");
+          }}
+          onMouseOver={() => setShadow("rgba(178,59,194,1)")}
+        >
+          Login
+        </button>
         <div className="others right-settings justify-center items-center">
           <div className="grid grid-cols-3 md:pt-4 focus:ring-black-200 ">
             <div className="catalog justify-around items-center pt-5 cursor-pointer  mx-10 ">
