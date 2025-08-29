@@ -204,61 +204,32 @@ const Homepage = () => {
               <span> Podcast </span>
             </div>
           </div>
-          <div className=" recently-watched p-4 outline-0  ml-190 sm:ml-10  w-25 h-15 sm:mb-2 tracking-widest font-medium text-white text-center mt-4 border border-white rounded-md pt-1 cursor-pointer hover:bg-slate-300/50 hover:ring-2 hover:text-white">
-            <span className=""> Recently heared </span>
+          <div className=" recently-watched  outline-0  ml-190 sm:ml-10  w-25 h-15 sm:mb-2 tracking-widest font-medium text-white text-center mt-4 border border-white rounded-md pt-1 cursor-pointer hover:bg-slate-300/50 hover:ring-2 hover:text-white">
+            <span className="py-4"> Recently heared </span>
           </div>
           <div className="recent_history my-10  bg-transparent border grid grid-cols-3 py-2 gap-3 border-purple-400 xl:w-400 lg:w-380 md:w-370  sm:w-365 w-360 ml-20  h-100 rounded-md">
-            <div className="recently_viewd flex my-3 mx-3 cursor-pointer">
-              <img
-                src="https://static.qobuz.com/images/covers/56/63/0886446516356_600.jpg"
-                alt=""
-                className="object-cover max-h-24 "
-              />
+            {[...Array(6)].map((_, key) => (
               <div
-                className=" bg-transparent border border-purple-300/50 w-100 max-h-24 text-center py-5 text-white text-2xl  px-10"
-                style={{
-                  borderLeft: "none",
-                  borderTopRightRadius: "5px",
-                  borderBottomRightRadius: "5px",
-                }}
+                className="recently_viewd flex my-3 mx-3 cursor-pointer"
+                kye={key}
               >
-                {name}
+                <img
+                  src="https://static.qobuz.com/images/covers/56/63/0886446516356_600.jpg"
+                  alt=""
+                  className="object-cover max-h-24 "
+                />
+                <div
+                  className=" bg-transparent border border-purple-300/50 w-100 max-h-24 text-center py-5 text-white text-2xl  px-10"
+                  style={{
+                    borderLeft: "none",
+                    borderTopRightRadius: "5px",
+                    borderBottomRightRadius: "5px",
+                  }}
+                >
+                  {name}
+                </div>
               </div>
-            </div>
-            <div className="recently_viewd flex my-3 mx-3 cursor-pointer">
-              <img
-                src="https://static.qobuz.com/images/covers/56/63/0886446516356_600.jpg"
-                alt=""
-                className="object-cover max-h-24 "
-              />
-              <div
-                className=" bg-transparent border border-purple-300/50 w-100 max-h-24 text-center py-5 text-white text-2xl  px-10"
-                style={{
-                  borderLeft: "none",
-                  borderTopRightRadius: "5px",
-                  borderBottomRightRadius: "5px",
-                }}
-              >
-                {name}
-              </div>
-            </div>
-            <div className="recently_viewd flex my-3 mx-3 cursor-pointer">
-              <img
-                src="https://static.qobuz.com/images/covers/56/63/0886446516356_600.jpg"
-                alt=""
-                className="object-cover max-h-24 "
-              />
-              <div
-                className=" bg-transparent border border-purple-300/50 w-100 max-h-24 text-center py-5 text-white text-2xl  px-10"
-                style={{
-                  borderLeft: "none",
-                  borderTopRightRadius: "5px",
-                  borderBottomRightRadius: "5px",
-                }}
-              >
-                {name}
-              </div>
-            </div>
+            ))}
           </div>
 
           <div></div>
