@@ -58,7 +58,7 @@ export const ListMovieSongs = () => {
       const colorThief = new ColorThief();
       const palette = colorThief.getPalette(img, 3);
       const colors = palette
-        .map((c) => `rgb(${c[0]}, ${c[1]}, ${c[2]}, 1)`)
+        .map((c) => `rgba (${c[0]}, ${c[1]}, ${c[2]}, 1)`)
         .sort(() => Math.random() - 0.5);
 
       const angle = Math.floor(Math.random() * 360);

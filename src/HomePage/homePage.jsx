@@ -1,8 +1,30 @@
-import { useState } from "react";
+import ColorThief from "colorthief";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 const Homepage = () => {
   // eslint-disable-next-line no-undef
   const name = useState("Harris Jayaraj");
+  const [backgroundColor, setBackgroundColor] = useState("transparent");
+
+  const [images, setImages] = useState([
+    "https://static.qobuz.com/images/covers/56/63/0886446516356_600.jpg",
+    "https://i.scdn.co/image/ab67616d0000b2738ebb1032821505934ec9569f",
+    "https://api-timescontent.timesofindia.com/api/v1/image-path/view/jpg/27689",
+    "https://rollingstoneindia.com/wp-content/uploads/2024/04/AR-Rahman-Unsung.jpg",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXD9mV1CPKwATMujgKHmsaXyggbyswKXJ3ZdTDcZZ0nbVbbZ1hU_pLcQ4LPdtX1rh1x8M&usqp=CAU",
+    "https://c.saavncdn.com/113/Yuvan-Shankar-Raja-Hits-Tamil-2005-20201029224137-500x500.jpg",
+  ]);
+
+  const [recentNames, setRecentNames] = useState([
+    "Harris Jayaraj",
+    "Aniruth Ravichandran",
+    "Unni Krishnan",
+    "A.R Rahman ",
+    "G.V Prakash",
+    "Uuvan Shankar Raja",
+  ]);
+
   const movieLists = [
     [
       {
@@ -172,6 +194,30 @@ const Homepage = () => {
         "https://edm.com/.image/ar_4:3%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTg5Mzg0MzcyODg4MDIwODg1/279912798_554688012687989_7371472378482916394_n-e1651905549299-696x522.jpg",
     },
   ];
+
+  const thiefColor = () => {
+    [...Array(6)].map((_, key) => {
+      const img = document.getElementById("img" + key);
+      img.crossOrigin = "anonymous";
+
+      img.addEventListener("load", () => {
+        const color = new ColorThief();
+        const pallate = color.getPalette(img, 3);
+        const colors = pallate.map((c) => `rgba(${c[0]},${c[1]},${c[2]})`);
+
+        const angle = Math.floor(Math.random() * 360);
+        const gradient = `linear-gradient(${angle}deg, ${colors.join(",")}`;
+
+        setBackgroundColor(gradient);
+
+        document.getElementById("recentBox" + key).style.background = gradient;
+      });
+    });
+  };
+
+  useEffect(() => {
+    thiefColor();
+  }, []);
   // movieLists.forEach((item) => item.map((innerItem) => console.log(innerItem)));
   const genrateArtistView = (key) => {
     return (
@@ -189,7 +235,7 @@ const Homepage = () => {
   return (
     <div>
       <div className="container relative my-1 ">
-        <div className="artists absolute md:block sm:hidden overflow-hidden md:mx-2 p-2 md:h-200  xl:h-400   w-30 bg-black  border border-transparent border-r-black h-full">
+        <div className="artists absolute md:block sm:hidden   md:h-200 sm:w-35  xl:h-400   w-30 bg-black  border border-transparent border-r-black h-full">
           {ArtistsName.map((item, key) => genrateArtistView(key))}
         </div>
         <div className="homePageSongsCatalog  bg-[linear-gradient(to_bottom,#1e1136_30%,#bcacd5_100%)] xl:w-440 xl:mx-34 rounded-md lg:w-420 lg:mx-34 md:mx-34 md:w-410 sm:w-410 w-420 mx-30">
@@ -207,26 +253,38 @@ const Homepage = () => {
           <div className=" recently-watched  outline-0  ml-190 sm:ml-10  w-25 h-15 sm:mb-2 tracking-widest font-medium text-white text-center mt-4 border border-white rounded-md pt-1 cursor-pointer hover:bg-slate-300/50 hover:ring-2 hover:text-white">
             <span className="py-4"> Recently heared </span>
           </div>
-          <div className="recent_history my-10  bg-transparent border grid grid-cols-3 py-2 gap-3 border-purple-400 xl:w-400 lg:w-380 md:w-370  sm:w-365 w-360 ml-20  h-100 rounded-md">
+          <div
+            className={`recent_history my-10  bg-transparent border grid grid-cols-3 py-2 gap-3 border-purple-400 transition-all h xl:w-400 lg:w-380 md:w-370  sm:w-365 w-360 ml-20  h-100 rounded-md`}
+          >
             {[...Array(6)].map((_, key) => (
               <div
                 className="recently_viewd flex my-3 mx-3 cursor-pointer"
-                kye={key}
+                key={key}
               >
                 <img
-                  src="https://static.qobuz.com/images/covers/56/63/0886446516356_600.jpg"
+                  src={images[key]}
                   alt=""
-                  className="object-cover max-h-24 "
+                  className="object-cover max-h-24 max-w-25"
+                  id={"img" + key}
                 />
                 <div
-                  className=" bg-transparent border border-purple-300/50 w-100 max-h-24 text-center py-5 text-white text-2xl  px-10"
+                  className={` bg-transparent border border-purple-300/50 w-100 max-h-24 text-center py-5 text-white text-2xl  px-10 transient-all ease-in-out delay-1  duration-[900ms]`}
+                  id={"recentBox" + key}
                   style={{
                     borderLeft: "none",
                     borderTopRightRadius: "5px",
                     borderBottomRightRadius: "5px",
                   }}
+                  onMouseOver={(e) =>
+                    (e.currentTarget.style.boxShadow =
+                      "0px 0px 16px rgba(96,51,170,1)")
+                  }
+                  onMouseOut={(e) =>
+                    (e.currentTarget.style.boxShadow =
+                      "0px 0px 16px rgba(0,0,0,0)")
+                  }
                 >
-                  {name}
+                  {recentNames[key]}
                 </div>
               </div>
             ))}
