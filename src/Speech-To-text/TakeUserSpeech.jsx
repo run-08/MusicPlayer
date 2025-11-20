@@ -34,6 +34,10 @@ const TakeUserInputByVoice = () => {
     console.log(audioChunks);
 
     minRecorder.current.onstop = async () => {
+      if (localStorage.getItem("name") === null) {
+        alert("Login || signup first!");
+        return;
+      }
       const audioBlob = new Blob(audioChunks, { type: "audio/webm" });
       const formData = new FormData();
       formData.append("audio", audioBlob);
@@ -99,7 +103,7 @@ const TakeUserInputByVoice = () => {
               title={songTitle}
               frameBorder="0"
               allow="autoplay"
-              className={` w-20  hover:ring-4 hover:ring-purple-500/50   rounded-full mb-25 mx-5 mt-0   h-20 ${styles.rotateAudioInputSong} `}
+              className={`  w-20  hover:ring-4 hover:ring-purple-500/50   rounded-full mb-25 mx-5 mt-0   h-20 ${styles.rotateAudioInputSong} `}
             ></iframe>
             mx-5 mt-0
           </div>

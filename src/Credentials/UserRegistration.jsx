@@ -1,10 +1,14 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./Credentials.module.css";
 
 const UserRegistration = () => {
   const generateMusicRain = () => {};
   const navigate = useNavigate();
+  const path = useLocation();
+  const from = path.state;
+  // console.log(from.from);
+
   const [formData, setFormData] = useState({
     userName: null,
     email: null,
@@ -15,7 +19,6 @@ const UserRegistration = () => {
 
   const validateData = (e) => {
     e.preventDefault();
-    console.log(formData);
 
     const userName = formData.userName,
       email = formData.email,
@@ -34,7 +37,8 @@ const UserRegistration = () => {
       alert(" password shouldn't null!");
       return;
     }
-    storeUserData();
+    if (from.from === "signup") storeUserData();
+    else AuthenticateUser();
   };
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -43,6 +47,26 @@ const UserRegistration = () => {
       ...prevData,
       [name]: value,
     }));
+  };
+
+  const AuthenticateUser = async () => {
+    alert();
+    try {
+      const response = await fetch("http://localhost:1005/authenticateUser", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      if (response.ok) {
+        console.log(response.body);
+        navigate("/homePage");
+        localStorage.setItem("name", formData["userName"]);
+      }
+      const res = response.text();
+      console.log(res);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const storeUserData = async () => {
@@ -57,10 +81,10 @@ const UserRegistration = () => {
         console.log(response.body);
 
         navigate("/homePage");
+        localStorage.setItem("name", formData["userName"]);
       }
     } catch (er) {
       console.log(er);
-
       alert("Check your network");
     }
   };
@@ -77,7 +101,7 @@ const UserRegistration = () => {
             className={`hover:text-blue-300`}
             onMouseOut={() => setShowAppName("hidden")}
           >
-            Login
+            {from.from}
             <span className={` ${showAppName ? "block" : "hidden"} `}>
               to Arunofyit
             </span>
@@ -145,10 +169,10 @@ const UserRegistration = () => {
                 Submit{" "}
               </button>
             </div>
-            <p className="text-center mt-5 ml-10  text-purple-300 hover:text-red-500 cursor-pointer">
+            {/* <p className="text-center mt-5 ml-10  text-purple-300 hover:text-red-500 cursor-pointer">
               <span className="text-green-300">Already have an account?</span>{" "}
               <a href="http://localhost:1005/login ">Click Here to Login</a>
-            </p>
+            </p> */}
           </form>
         </div>
       </div>

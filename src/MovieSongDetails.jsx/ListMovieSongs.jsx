@@ -15,7 +15,7 @@ export const ListMovieSongs = () => {
   } = songDetails((state) => state);
   const [bgColor, setBgColor] = useState("black");
   const navigate = useNavigate();
-  const Youtube_Restapi_key = "AIzaSyAW_f255s6Hw3e-KRqn_Ja2qSpg9rCpW6Y";
+  const Youtube_Restapi_key = "AIzaSyBwXH0sbemwPRlykrO9MJ5j60sJYxZgkzc";
   const location = useLocation();
   const MovieName = location.state.movieName;
   const thumbnail = location.state.thumbnail;
@@ -60,7 +60,6 @@ export const ListMovieSongs = () => {
       const colors = palette
         .map((c) => `rgba (${c[0]}, ${c[1]}, ${c[2]}, 1)`)
         .sort(() => Math.random() - 0.5);
-
       const angle = Math.floor(Math.random() * 360);
       const gradient = `linear-gradient(${angle}deg, ${colors.join(",")}`;
 
@@ -70,31 +69,31 @@ export const ListMovieSongs = () => {
 
   return (
     <div
-      className={`rounded-xl  absolute w-full  h-full `}
+      className={`rounded-ml  md:w-400 sm:w-200 xl:w-auto my-1 `}
       style={{
         background: bgColor,
       }}
     >
-      <div className="MovieImage w-full my-20 h-60 mx-60">
+      <div className="MovieImage  mx-30 pt-3">
         <img
           src={thumbnail}
           alt="Movie Poster"
-          className=" h-70  rounded-md mx-1 object-contain cursor-pointer"
+          className="rounded-md mx-1 object-contain w-fit h-fit cursor-pointer"
           ref={imgRef}
         />
       </div>
-      <hr className="w-400 mx-40 " />
+
       <div>
         {" "}
-        <div className="songLists mx-40 mt-7 space-y-4  text-white ">
-          <div className="grid grid-cols-3 w-440 font-bold border-b pb-2">
+        <div className="songLists mx-30 mt-7 space-y-4  text-white ">
+          <div className="grid grid-cols-3  font-bold border-b pb-2">
             <div>Title</div>
             <div>Movie</div>
-            <div>Duration</div>
+            <div className="w-auto ">Duration</div>
           </div>
           {movieSongs.map((item, key) => (
             <div
-              className="grid grid-cols-3 w-440  items-center cursor-pointer"
+              className="grid sm:grid-cols-3 py-1 sm:py-0 grid-cols-1   items-center cursor-pointer"
               key={key}
               onClick={() => navigate(`/playSong/${key}`)}
             >

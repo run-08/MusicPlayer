@@ -3,12 +3,14 @@ import ArtistSongs from "./ArtistBasedSong/ArtistsSongs";
 import UserRegistration from "./Credentials/UserRegistration";
 import OutletPage from "./HomePage/OutletPage";
 import { ListMovieSongs } from "./MovieSongDetails.jsx/ListMovieSongs";
-import TakeUserInputByVoice from "./Speech-To-text/TakeUserSpeech";
 import PlaySong from "./songPage/songsPlay";
+import TakeUserInputByVoice from "./Speech-To-text/TakeUserSpeech";
+import CommonDB from "./Zustand/commonDB";
 const App = () => {
+  const { data } = CommonDB((state) => state);
   return (
     <>
-      <CustomRoutes />
+      <CustomRoutes></CustomRoutes>
     </>
   );
 };
